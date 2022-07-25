@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+#script to stop PID without using KILL or KILLALL
+pkill -f '6-stop_me_if_you_can'

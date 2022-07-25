@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+#script that displays text after 2 second display of infinity and beyond text
+index=0
+
+while (( index == 0 )); do
+	echo "To infinity and beyond"
+	trap "echo I am invincible!!!" SIGTERM
+done

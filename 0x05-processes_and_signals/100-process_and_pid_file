@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+#creates file /var/run/myscript.pid
+#display 'To infinity and beyond' indefinitely
+#display i HATE THE KILL COMMAND in SIGTERM signal
+#display Y U NO LOVE ME?! in SIGINT signal
+#delete file and terminate at SIGQUIT signal
+
+SIGTERM_handler()
+{
+	echo "I hate the kill command"
+	rm /var/run/myscript.pid
+	exit 0
+}
+
+SIGINT_handler()
+{
+	echo "Y U no love me?!"
+}
+
+SIGQUIT_handler()
+{
+	rm /var/run/myscript.pid
+	exit 0
+}
+
+trap "SIGTERM_handler" SIGTERM
+trap "SIGINT_handler" SIGINT
+trap "SIGQUIT_handler" SIGQUIT
+
+pgrep -f 100-process_and_pid_file >> /var/run/myscript.pid
+while $1
+do
+echo "To infinity and beyond";
+sleep 2
+done
