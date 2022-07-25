@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# script iterates BEST SCHOOL 10 times and hi at 9th iteration
+
+x=1
+while [ $x -ne 11 ]
+do
+	if [ $x -eq 9 ]
+	then
+		echo "Hi"
+	else
+		echo "Best School"
+	fi
+	x=$(( x + 1 ))
+done

@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# script that displays:
+# the content of current directory
+# in a list format
+# where only part of the name after dash is displayed
+for file in *
+do
+	if [ -f "$file" ]
+	then
+		echo "$file" | cut -d "-" -f 2-
+	fi
+done
