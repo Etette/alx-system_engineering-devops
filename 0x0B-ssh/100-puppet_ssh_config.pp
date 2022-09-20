@@ -2,11 +2,11 @@
 include stdlib
 file_line { 'Declare identity file':
   path    => '/etc/ssh/ssh_config',
-  line    => '	identityFile ~/.ssh/school',
+  line    => '	IdentityFile ~/.ssh/school',
   replace => true,
 }
 
-file_line { 'Turn off password auth':
+file_line { 'Turn off passwd auth':
   path_line => '/etc/ssh/ssh_config',
   line      => '	PasswordAuthentication no',
   replace   => true,
