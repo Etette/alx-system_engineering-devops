@@ -6,18 +6,6 @@
 # The hostname must be the value of custom http on runnig nginx server
 
 sudo apt-get -y update
-sudo apt-get -y install nginx
-sudo sed -i "21s/^listen .*/listen 80" /etc/nginx/sites-enabled/default
-sudo ufw 'Nginx HTTP'
-sudo mkdir -p /var/www/html
-sudo chmod 755 /var/www
-echo "Hello World!" | sudo tee /var/www/html/index.nginx-debian.html
-file=/etc/nginx/sites-enabled/default
-redirect="\	rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4/$1";
-sudo sed -i " /server_name _;/a ${redirect} permanent;" $file
-echo "Ceci n'est pas una page" | sudo tee /usr/share/nginx/html/404.html
-err="\	error_page\ 404 /custom_404.html;/n/	location\ = \ /custom_404.html\ {\n\t\troot\ /usr/share/nginx/html;\n\t\tinternal;\n\t}"
-sudo sed -i "/server_name _;/a ${err}" $file
-custom_header="\	add_header X-Served-By $HOSTNAME;"
-sudo sed -i "server_name _;/a ${custom_header}" $file
+sudo apt-get install -y nginx
+sed -i '11i\add_header X-Served-By $HOSTNAME;' /etc/nginx/nginx.conf
 sudo service nginx restart
