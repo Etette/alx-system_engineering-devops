@@ -1,22 +1,28 @@
-# automate thr task of creating a custom http header response
+# automate the task of creating a custom http header response
 
-exec {'update-sudo':
-  provider => shell,
-  command  => 'sudo apt-get -y update'
+exec { 'sudo apt-get-update':
+  command => '/usr/bin/apt-get update',
 }
 
-exec {'install nginx':
-  provider => shell,
-  command  => 'sudo apt-get install -y nginx'
+package { 'nginx':
+  ensure  => installed,
+  require => Exec['apt-get-update'],
 }
 
-exec {'create new header':
-  provider    => shell,
-  environment => ["HOST=${hostname}"],
-  command     => 'sudo sed -i "server_name _;/a \tadd_header X-Served-By $HOSTNAME;" /etc/nginx/sites-enabled/default'
+file_line { 'a':
+  ensure  => 'present',
+  path    => '/etc/nginx/sites-available/default',
+  after   => 'listen 80 default_server',
+  line    => 'rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlw4 permanent;',
+  require => Package['nginx'],
 }
 
-exec {'restart nginx':
-  provider => shell,
-  command  => 'sudo service nginx restart'
+file { '/var/www/html/index.html':
+  content => 'Hello World!',
+  require => Package['nginx'],
+}
+
+service { 'nginx':
+  ensure  => running,
+  require => Package['nginx'],
 }
