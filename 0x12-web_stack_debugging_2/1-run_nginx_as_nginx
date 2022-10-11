@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# Fix container so that nginx runs as nginx user
+sudo pkill apache2
+
+#change owner & group permission
+chown nginx:nginx /etc/nginx/nginx.conf
+
+#change permission to owner
+chmod 700 /etc/nginx/nginx.conf
+
+sed -i "s/#user www-data/user nginx/" /etc/nginx/nginx.conf
+
+#change port 80 to 8080
+sed -i "s/80/8080/g" /etc/nginx/sites-available/default
+
+#Restart like nginx user
+sudo -u nginx service nginx restart
