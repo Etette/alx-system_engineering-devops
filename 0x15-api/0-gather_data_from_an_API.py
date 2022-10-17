@@ -9,7 +9,7 @@ import requests
 from sys import argv
 
 
-if __name__ = "__main__":
+if __name__ == "__main__":
     api = "https://jsonplaceholder.typicode.com/"
     api_url_usr = api + "users/" + argv[1]
     api_usr_todos = api + "todos?userId=" + argv[1]
