@@ -18,7 +18,7 @@ if __name__ == "__main__":
     response = requests.get(api_url_usr).json()
     todo = requests.get(api_url_todos).json()
 
-    filename = argv[1] + ".CSV"
+    filename = argv[1] + ".csv"
     with open(filename, 'w', newline='') as csvfile:
         write_file = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
         for task in todo:
