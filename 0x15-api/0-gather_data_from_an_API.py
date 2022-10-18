@@ -21,7 +21,7 @@ if __name__ == "__main__":
         if task.get("completed") is not False:
             complete_tasks.append(task.get("title"))
 
-    print("Employer {} is done with tasks ({}/{}):".format(
+    print("Employer {} is done with tasks({}/{}):".format(
           response.get("name"), len(complete_tasks), len(todo)))
     for title in complete_tasks:
         print("\t {}".format(title))
