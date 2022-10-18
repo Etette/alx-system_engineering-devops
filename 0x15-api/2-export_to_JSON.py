@@ -21,8 +21,8 @@ if __name__ == "__main__":
     content = {argv[1]: []}
     for task in todo:
         content[argv[1]].append({"task": task.get("title"),
-                                "completed": task.get("completed"),
-                                "username": response.get("username")})
+                                 "completed": task.get("completed"),
+                                 "username": response.get("username")})
     content = json.dumps(content)
     with open(filename, 'w', newline='') as jsonfile:
         jsonfile.write(content)
