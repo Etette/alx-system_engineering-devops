@@ -2,7 +2,6 @@
 """
 Use given REST API (for employer ID)
 return information about employer todo list
-progress
 """
 
 import requests
