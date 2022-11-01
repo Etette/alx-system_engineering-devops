@@ -36,4 +36,4 @@ def recurse(subreddit, hot_list=[]):
     """
     if subreddit is None or type(subreddit) is not str:
         return None
-    return f_afteer(subreddit, hot_list, "")
+    return f_after(subreddit, hot_list, "")
