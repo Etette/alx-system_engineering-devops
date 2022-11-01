@@ -5,7 +5,7 @@ Function to queries the REDDIT API
 import requests
 
 
-def number_of_subscribers(subreddit):
+def top_ten(subreddit):
     """Prints the titles of the first 10 posts
     listed in /HOT subreddit
 
@@ -22,7 +22,6 @@ def number_of_subscribers(subreddit):
         if data.status_code != 200:
             print(None)
             return
-        # return data.json().get('data', {}).get('subscribers', 0)
         data = data.json().get('data').get('children')
         for i in data[0:10]:
             print(i.get('data').get('title'))
