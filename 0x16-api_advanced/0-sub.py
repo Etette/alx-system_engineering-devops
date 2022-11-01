@@ -2,6 +2,7 @@
 """
 Function to query the REDDIT API
 """
+import requests
 
 
 def number_of_subscribers(subreddit):
